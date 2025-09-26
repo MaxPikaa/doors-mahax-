@@ -24,7 +24,7 @@ local Translations = {
     ["No Cutscenes"] = "无过场动画",
     ["Anti Lag"] = "反滞后<改画质> ",
     ["Miscellaneous"] = "杂项",
-    ["Disable AFK"] = "禁用AFK",
+    ["Disable AFK"] = "反挂机AFK",
     ["Instant Interacts"] = "快速互动",
     ["Prompt Clip"] = "提示",
     ["Notifying"] = "通知",
@@ -73,12 +73,12 @@ local Translations = {
     ["LockPicks"] = "开锁器",
     ["God Mode"] = "上帝模式",
     ["Anti Cheat Manipulation"] = "防卡住",
-    ["Speed Bypass"] = "速度绕过",
+    ["Speed Bypass"] = "速度绕过<记得开自动化>",
     ["Automation"] = "自动化",
     ["Godmode Dropdown"] = "模式类<包括自动绕过速度>",
     ["Entitys"] = "实体",
-    ["Automation Library Code"] = "自动化库代码",
-    ["Jeff Items"] = "杰夫卖的物品<不建议开 | but到商店记得关>",
+    ["Automation Library Code"] = "自动图库管解密码",
+    ["Jeff Items"] = "杰夫卖的物品<关闭会互动商店物品>",
     ["Drops"] = "丢弃的物品",
     ["Auto Breaker Box"] = "自动电工<维修电箱>",
     ["Speed Boost"] = "速度提升",
@@ -99,7 +99,7 @@ local Translations = {
     ["Transparency Closet"] = "衣柜透明",
     ["Transparency Cart"] = "透明矿车",
     ["Entites Bypass"] = "实体绕过",
-    ["Auto Doors (99 Doors"] = "自动99门<有bug>",
+    ["Auto Doors (99 Doors）"] = "自动99门<有bug>",
     ["Anti Nanner Banana"] = "反香蕉滑倒 ",
     ["Anti Seek-Obstructions"] = "反Seek障碍",
     ["Death Farm"] = "刷死亡次数",
@@ -128,8 +128,17 @@ local Translations = {
     ["Remove Figure (FE)"] = "移除飞哥(FE)",
     ["防 Bridge Fall"] = "防桥梁坠落",
     ["Show Seek Path"] = "显示Seek路径",
-    ["防cheat Bypass"] = "防作弊绕过",
+    ["防cheat Bypass"] = "梯子反作弊绕过",
     ["Modifiers"] = "修改器",
+    ["Enable"] = "使用前请打开",
+    ["Crucifix"] = "十字架",
+    ["Properly"] = "才是正确的用法",
+    ["Alarm Clock"] = "闹钟",
+    ["Lock pick"] = "开锁器",
+    ["Ignore List"] = "忽略列表",
+    ["Bypass"] = "绕过",
+    ["Level"] = "开关",
+    ["Smoothie"] = "冰沙杯<回复道具>"
 }
 
 local function translateText(text)
@@ -237,7 +246,7 @@ task.wait(2)
 setupTranslationEngine()
 
 local success, err = pcall(function()
---这下面填加载外部脚本
+--倒卖死全家 死父母
 getgenv().LibraryIs = "Obsidian" -- or Linoria
 loadstring(game:HttpGet("https://raw.githubusercontent.com/TheHunterSolo1/Op-Ninja-Simulator-/Main/Lua"))()
 
