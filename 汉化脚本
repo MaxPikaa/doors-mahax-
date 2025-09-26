@@ -1,4 +1,6 @@
 local Translations = {
+--倒卖死全家
+--免费开源 盗搬死妈
    ["DOORS"] = "门(🇨🇳)",
     ["Reach"] = "门互动",
     ["Settings"] = "设置",
