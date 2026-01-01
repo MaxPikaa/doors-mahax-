@@ -1,5 +1,5 @@
 --//此脚本完全开源 缝合+二改圈钱的你妈死了//
---//请问拿去非法用途请勿拿去提交源码//
+--//请勿拿去提交源码//
 
 local Pathfinding = loadstring(game:HttpGet("https://raw.githubusercontent.com/TheHunterSolo1/Scripts/main/Pathfinding"))()
 
