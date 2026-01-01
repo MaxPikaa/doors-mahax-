@@ -2793,11 +2793,11 @@ end)
 
 if ReplicatedStorage:FindFirstChild("RemotesFolder") then
 Bypass:AddDropdown("SpeedBypassMethod", {
-        Values = {"","Method 2"},
+        Values = {"Method 1","Method 2"},
         Default = 1, -- number index of the value / string
         Multi = false, -- true / false, allows multiple choices to be selected
 
-        Text = "速度绕过模式",
+        Text = "绕过模式",
         
 
         Callback = function(Value)
@@ -2820,7 +2820,7 @@ Library:Notify("速度绕过方法2无法工作，因为您的执注入器不支
 end
 
 if Options.SpeedBypassMethod.Value == "Method 1" then
-Options.SpeedBoostSlider:SetMax(Value and 100 or 21)
+Options.SpeedBoostSlider:SetMax(Value and 150 or 21)
 elseif Options.SpeedBypassMethod.Value == "Method 2" then
 Options.SpeedBoostSlider:SetMax(Value and 150 or 21)
 end
@@ -2829,7 +2829,7 @@ end
 Options.SpeedBoostSlider:SetValue(Value and Options.SpeedBoostSlider.Value or 21)
 
 
-Options.FlySpeed:SetMax(Value and 100 or 21)
+Options.FlySpeed:SetMax(Value and 150 or 21)
 
 
 Options.FlySpeed:SetValue(Value and Options.FlySpeed.Value or 21)
@@ -2939,8 +2939,8 @@ end
 if not ReplicatedStorage:FindFirstChild("RemotesFolder") then
 
 
-Options.SpeedBoostSlider:SetMax(100)
-Options.FlySpeed:SetMax(100)
+Options.SpeedBoostSlider:SetMax(150)
+Options.FlySpeed:SetMax(150)
 end
 
 
@@ -5378,8 +5378,8 @@ local Door = workspace.CurrentRooms[LocalPlayer:GetAttribute("CurrentRoom")].Doo
 local Door2 = workspace.CurrentRooms[LocalPlayer:GetAttribute("CurrentRoom") + 1].Door.Door
 if not Door:GetAttribute("Used") then
 
-AddESP(Door, (Door.Parent:FindFirstChild("Lock") and "Locked  " or "") .. "Door " .. Door.Parent:GetAttribute("RoomID"), DoorColor)
-AddESP(Door2, (Door2.Parent.Parent:GetAttribute("RequiresKey") and "Locked  " or "") .. "Door " .. Door2.Parent:GetAttribute("RoomID"), DoorColor)
+AddESP(Door, (Door.Parent:FindFirstChild("Lock") and "[上锁的]  " or "") .. "门 " .. Door.Parent:GetAttribute("RoomID"), DoorColor)
+AddESP(Door2, (Door2.Parent.Parent:GetAttribute("RequiresKey") and "[上锁的]  " or "") .. "门 " .. Door2.Parent:GetAttribute("RoomID"), DoorColor)
 
 end
 
@@ -5396,7 +5396,7 @@ if Toggles.Ladder and Toggles.Ladder.Value then
 local v = workspace.CurrentRooms[LocalPlayer:GetAttribute("CurrentRoom")]:FindFirstChild("Ladder",true)
 
 if v then
-AddESP(v,"Ladder",Color3.new(0,3,2))
+AddESP(v,"梯子",Color3.new(0,3,2))
 end
 
 
@@ -5408,14 +5408,14 @@ if Toggles.Key.Value then
 
 local v = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:FindFirstChild("KeyObtain",true)
 if v and not v:GetAttribute("Used") then
-AddESP(v,"Key",KeyColor)
+AddESP(v,"钥匙",KeyColor)
 
 end
 end
 if Toggles.GateLever.Value then
 local Lever = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:FindFirstChild("Assets"):FindFirstChild("LeverForGate")
 if Lever then 
-AddESP(Lever,"Lever ",GateLeverColor)
+AddESP(Lever,"拉杆 ",GateLeverColor)
 
 end
 end
@@ -5607,14 +5607,14 @@ end
 if Toggles.TimerLever.Value then
 if v.Name == "TimerLever" then
 
-AddESP(v,"TimerLever",TimerLeverColor)
+AddESP(v,"计时拉杆",TimerLeverColor)
 
 end
 end
 if Toggles.HouseESP and Toggles.HouseESP.Value then
 
 if v.Name == "TrickOrTreatHouse" or v.Name == "TrickOrTreatDoor"  then
-AddESP(v, "House", Color3.new(0,1, 0))
+AddESP(v, "房屋", Color3.new(0,1, 0))
 end
 end
 if Toggles.AntiDupe.Value then
@@ -5650,7 +5650,7 @@ end
 if Toggles.WaterPump and Toggles.WaterPump.Value then
 
 if v.Name == "WaterPump" then
-AddESP(v,"Water Pump",Color3.new(0,1,0))
+AddESP(v,"水泵",Color3.new(0,1,0))
 end
 
 end
@@ -5711,13 +5711,13 @@ end
 
 if Toggles.Books.Value then
 if v.Name == "LiveHintBook" then
-AddESP(v,"Book",BooksColor)
+AddESP(v,"书",BooksColor)
 end
 end
 
 if Toggles.Breaker.Value then
 if v.Name == "LiveBreakerPolePickup" then
-AddESP(v,"Breaker",BreakerColor)
+AddESP(v,"开锁器",BreakerColor)
 end
 end
 
@@ -5770,7 +5770,7 @@ end
 
 if Toggles.Anchor and Toggles.Anchor.Value then
 if v.Name == "MinesAnchor" then
-AddESP(v,"Anchor " ..  v:WaitForChild("Sign").TextLabel.Text,AnchorColor)
+AddESP(v,"锚点 " ..  v:WaitForChild("Sign").TextLabel.Text,AnchorColor)
 end
 end
 
@@ -5804,7 +5804,7 @@ end
 if Toggles.Gold.Value then
 if v.Name == "GoldPile" then
 if v:GetAttribute("GoldValue") then
-AddESP(v,"Gold " .. v:GetAttribute("GoldValue"),GoldColor)
+AddESP(v,"金币 " .. v:GetAttribute("GoldValue"),GoldColor)
 end
 end
 end
@@ -5813,7 +5813,7 @@ if (Floor.Value == "Garden") and Toggles.LeverESP.Value then
 
 if v and v.Parent and v.Parent.Name == "VineGuillotine" and v.Name == "Lever" then
 
-AddESP(v,"Lever",Color3.new(0,1,0))
+AddESP(v,"拉杆",Color3.new(0,1,0))
 
 
 end
@@ -5905,7 +5905,7 @@ end
 local Screech = Modules:FindFirstChild("Screech") or Modules:FindFirstChild("_Screech")
 
 Screech.Name =    "Screech"
-Library:Notify("Unloading Wait",0.8)
+Library:Notify("卸载中请稍等",0.8)
 task.wait(1.5)
 Library:Unload()
 ESPLibrary:Unload() -- Nice
@@ -6306,6 +6306,203 @@ local TrueTime = math.floor(FullTime * 1000) / 1000
 Library:Notify("Loaded in " .. TrueTime , 5)
 
 end
+if game.PlaceId == 3101667897 then
+game.Players.LocalPlayer:SetAttribute("mshaxLoaded",true)
+
+local repo = 'https://raw.githubusercontent.com/mstudio45/LinoriaLib/main/'
+local Executor = identifyexecutor()  or getexecutorname() 
+local Library =  loadstring(game:HttpGet(repo..'Library.lua'))()
+Library:Notify("Loading mshax for Legends of speed ",5)
+task.wait(1.5)
+Sound()
+
+
+ThemeManager = loadstring(game:HttpGet(repo..'addons/ThemeManager.lua'))()
+SaveManager  = loadstring(game:HttpGet(repo..'addons/SaveManager.lua'))()
+Options = Library.Options
+Toggles = Library.Toggles
+local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/bocaj111004/ESPLibrary/refs/heads/main/Library.lua"))()
+
+local Connections = {}
+
+
+Window = Library:CreateWindow({
+    Title = 'Orange Hub 🥭 ',
+    Center = true,
+ToggleKeybind = Enum.KeyCode.RightControl,
+    AutoShow = true
+})
+
+Tabs = {
+	Main     = Window:AddTab('Main'),
+	UISettings = Window:AddTab('Config'),
+}
+local MainBox = Tabs.Main:AddRightGroupbox("Main")
+
+
+local SettingsBox = Tabs.UISettings:AddRightGroupbox("UI")
+
+MainBox:AddToggle("AutoFarm",{
+Text = "Auto Farm",
+Default = false
+})
+MainBox:AddToggle("AutoRebirth",{
+Text = "Auto Rebirth",
+Default = false
+})
+table.insert(Connections,RunService.RenderStepped:Connect(function()
+if LocalPlayer.Character and LocalPlayer.Character.Humanoid.Health > 0 then
+if Toggles.AutoFarm.Value then
+
+local args = {
+	"collectOrb",
+	"Blue Orb",
+LocalPlayer.Character.areaNameValue.Value
+}
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+local args = {
+	"collectOrb",
+	"Red Orb",
+LocalPlayer.Character.areaNameValue.Value
+}
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+local args = {
+	"collectOrb",
+	"Gem",
+	LocalPlayer.Character.areaNameValue.Value
+}
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+local args = {
+	"collectOrb",
+	"Yellow Orb",
+	LocalPlayer.Character.areaNameValue.Value
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+
+local args = {
+	"collectOrb",
+	"Yellow Orb",
+	LocalPlayer.Character.areaNameValue.Value
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+
+local args = {
+	"collectOrb",
+	"Yellow Orb",
+	LocalPlayer.Character.areaNameValue.Value
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+local args = {
+	"collectOrb",
+	"Yellow Orb",
+	LocalPlayer.Character.areaNameValue.Value
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("orbEvent"):FireServer(unpack(args))
+
+
+end
+if Toggles.AutoRebirth.Value then
+
+
+
+
+local args = {
+	"rebirthRequest"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("rEvents"):WaitForChild("rebirthEvent"):FireServer(unpack(args))
+
+
+end
+end
+
+end))
+SettingsBox:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
+
+Library.ToggleKeybind = Options.MenuKeybind 
+SettingsBox:AddToggle("ShowKeybinds", {
+		Text = "Show Keybinds",
+		Default = false,
+		Tooltip = "Toggle the visibility of the keybinds menu",
+	}):OnChanged(function()
+		Library.KeybindFrame.Visible = Toggles.ShowKeybinds.Value
+	end)
+
+SettingsBox:AddToggle("ShowCustomCursor", {
+		Text = "Show Custom Cursor",
+		Default = Library.IsMobile == true and true or false,
+		Tooltip = "Toggle the visibility of the Cursor",
+	}):OnChanged(function()
+		Library.ShowCustomCursor = Toggles.ShowCustomCursor.Value
+	end)
+
+	local Contributors = Tabs.UISettings:AddRightGroupbox("Credits")
+	Contributors:AddLabel("KardinCat - Creator",true)
+Contributors:AddLabel("rhyan57  - Creator of API Support His Script",true)
+Contributors:AddButton('Join msdoors Discord',function()
+if toclipboard then
+toclipboard('https://discord.gg/t85738DkwT')
+elseif setclipboard then
+setclipboard('https://discord.gg/t85738DkwT')
+end
+end)
+
+
+function Unload()
+game.Players.LocalPlayer:SetAttribute("mshaxLoaded",false)
+
+Library.Unloaded = true
+Library:Unload()
+ESPLibrary:Unload()
+
+for _, con in pairs(Connections) do
+con:Disconnect()
+end
+
+
+end
+SettingsBox:AddButton({
+     Text = "Unload GUI",
+     Func = function()
+Unload()
+end
+})
+
+
+local folder_path = "Prohax"
+local file_path = "Legends Of Speed"
+ThemeManager:SetLibrary(Library)
+SaveManager:SetLibrary(Library)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({ 'MenuKeybind' })
+
+ThemeManager:SetFolder(folder_path)
+SaveManager:SetFolder(folder_path .. '/' .. file_path)
+SaveManager:SetSubFolder(file_path)
+
+SaveManager:BuildConfigSection(Tabs['UISettings'])
+ThemeManager:ApplyToTab(Tabs['UISettings'])
+
+
+
+
+
+
+
+
+
+end
+
+
+
+
+
+
+
+
 
 if game.PlaceId == 142823291 or game.PlaceId == 636649648 or game.PlaceId == 335132309 then
     local repo = 'https://raw.githubusercontent.com/mstudio45/Obsidian/main/'
@@ -6344,20 +6541,20 @@ if game.PlaceId == 142823291 or game.PlaceId == 636649648 or game.PlaceId == 335
     table.insert(Connections, Workspace.DescendantAdded:Connect(MonitorCoin))
 
     local Window = Library:CreateWindow({
-        Title = 'Orange Hub 🥭 | 谋杀之谜 2 ',
+        Title = 'Orange Hub  | Murder Mystery 2',
         Center = true,
         ToggleKeybind = Enum.KeyCode.RightControl,
         AutoShow = true
     })
 
     local Tabs = {
-        Main = Window:AddTab('主要'),
-        Visuals = Window:AddTab('视觉'),
-         Teleports = Window:AddTab('传送'),
-        Settings = Window:AddTab('设置'),
+        Main = Window:AddTab('Main'),
+        Visuals = Window:AddTab('Visuals'),
+         Teleports = Window:AddTab('Teleports'),
+        Settings = Window:AddTab('Settings'),
     } 
-    local TeleportsBox = Tabs.Teleports:AddLeftGroupbox('传送到')
-TeleportsBox:AddButton('传送到地图',function()
+    local TeleportsBox = Tabs.Teleports:AddLeftGroupbox('Teleport To')
+TeleportsBox:AddButton('Teleport to Map',function()
 for _, v in pairs(workspace:GetChildren()) do
 if v:GetAttribute("MapID") then
 LocalPlayer.Character:PivotTo(v.Spawns:FindFirstChild("Spawn").CFrame)
@@ -6365,20 +6562,20 @@ end
 end
 
 end)
-TeleportsBox:AddButton('传送到大厅',function()
+TeleportsBox:AddButton('Teleport to Lobby',function()
 LocalPlayer.Character:PivotTo(workspace.Lobby:GetPivot())
 
 end)
-local MiscBox = Tabs.Main:AddLeftGroupbox('杂项')
+local MiscBox = Tabs.Main:AddLeftGroupbox('Miscellaneous')
 
 local Timer 
 MiscBox:AddToggle('ShowTimer',{
-Text = "显示计时器",
+Text = "Show Timer",
 Default = false,
 Callback = function(Value)
 if Value then
 Timer = Instance.new("ScreenGui",game.CoreGui)
-Timer.Name = "计时器"
+Timer.Name = "Timer"
 local TextLabel = Instance.new("TextLabel",Timer)
 TextLabel.Text = "Unknown"
 TextLabel.Position = UDim2.new(0, 325, 0, 0)
@@ -6397,11 +6594,11 @@ end
 })
 local Connection1
 MiscBox:AddToggle('SecondLife',{
-Text = "第二人生",
+Text = "Second Life",
 Default = false
 })
 MiscBox:AddToggle('DisableSensors',{
-Text = "禁用传感器",
+Text = "Disable Sensors",
 Default = false,
 Callback = function(Value)
 
@@ -6417,7 +6614,7 @@ end
 end
 })
 MiscBox:AddToggle('DisableScan',{
-Text = "禁用设施扫描",
+Text = "Disable Facility Scan",
 Default = false,
 Callback = function(Value)
 
@@ -6470,25 +6667,25 @@ end
     local InnocentBox = Tabs.Main:AddRightGroupbox('Innocent')
 
     PlayerBox:AddSlider("WalkspeedSlider", {
-        Text = "行走速度", Default = 16, Min = 16, Max = 50, Rounding = 1, Compact = false,
+        Text = "Walk Speed", Default = 16, Min = 16, Max = 50, Rounding = 1, Compact = false,
     })
 
-    PlayerBox:AddToggle('EnableWalkSpeed', { Text = "速度开关", Default = false })
+    PlayerBox:AddToggle('EnableWalkSpeed', { Text = "Enable Custom WalkSpeed", Default = false })
     PlayerBox:AddDivider()
 
     PlayerBox:AddSlider("FlySpeed", {
-        Text = "飞行速度", Min = 10, Max = 50, Default = Fly.Speed, Rounding = 0,
+        Text = "Fly Speed", Min = 10, Max = 50, Default = Fly.Speed, Rounding = 0,
         Callback = function(v) Fly.Speed = v end
     })
 
     PlayerBox:AddToggle("Fly", {
-        Text = "开启飞行", Default = false,
+        Text = "Enable Fly", Default = false,
         Callback = function(enabled) if enabled then Fly.Enable() else Fly.Disable() end end
     }):AddKeyPicker('Fly Keybind', { Default = 'F', SyncToggleState = true, Mode = 'Toggle', Text = 'Fly Toggle' })
 
-    SheriffBox:AddToggle('AutoShotMurderer', { Text = "自动射击凶手", Default = false })
+    SheriffBox:AddToggle('AutoShotMurderer', { Text = "Auto Shot Murderer", Default = false })
 local OldPos 
-SheriffBox:AddToggle('AutoTPToMurderer', { Text = "自动传送至凶手 ", Default = false,
+SheriffBox:AddToggle('AutoTPToMurderer', { Text = "Auto TP to Murderer ", Default = false,
 Callback = function(Value)
 if Value then
 OldPos = LocalPlayer.Character.HumanoidRootPart.CFrame 
@@ -6496,22 +6693,22 @@ end
 end
 })
     SheriffBox:AddToggle('AutoGetDroppedGun', {
-        Text = "自动拾取枪支", Default = false, Disabled = Nofiretouch,
-        DisabledTooltip = "执行器缺少 firetouchinterest 函数。"
+        Text = "Auto Collect Gun", Default = false, Disabled = Nofiretouch,
+        DisabledTooltip = "Executor missing firetouchinterest."
     })
 
     MurdererBox:AddToggle('KillAll',{
-        Text = '都给我死😈😈😈',
+        Text = 'Kill All',
         Default = false
 })
         
             
    
 
-    MurdererBox:AddToggle('KnifeReach', { Text = "刀子攻击距离", Default = false })
-    MurdererBox:AddToggle('AutoThrowKnife', { Text = "自动投掷刀子", Default = false })
+    MurdererBox:AddToggle('KnifeReach', { Text = "Knife Reach", Default = false })
+    MurdererBox:AddToggle('AutoThrowKnife', { Text = "Auto Throw Knife", Default = false })
 local OldPos
-    InnocentBox:AddToggle('AutoFarmCoins', { Text = "自动刷取金币", Default = false, Callback = function(Value)
+    InnocentBox:AddToggle('AutoFarmCoins', { Text = "Auto Farm Coins", Default = false, Callback = function(Value)
 if Value then
 OldPos = LocalPlayer.Character.HumanoidRootPart.CFrame
 else
@@ -6525,7 +6722,7 @@ end
 end
 })
 InnocentBox:AddToggle('WinWhenBagFull',{
-Text = "当金币满时自动获胜",
+Text = "Auto Win When Full",
 Default = false,
 Callback = function(Value)
 if not Value then
@@ -6536,20 +6733,20 @@ end
 end
 })
 InnocentBox:AddToggle('TweenUnder',{
-Text = "底层缓动",
+Text = "Tween Under",
 Default = false
 })
 InnocentBox:AddToggle('ResetWhenCoinsBagFull',{
-Text = "当金币满时重置",
+Text = "Reset When Full",
 Default = false
 })
 InnocentBox:AddDivider()
-    InnocentBox:AddToggle('CoinsReach', { Text = "金币拾取距离", Default = false })
+    InnocentBox:AddToggle('CoinsReach', { Text = "Coins Reach", Default = false })
 
 
 
 
-InnocentBox:AddButton('击杀警长',function()
+InnocentBox:AddButton('Kill Sheriff',function()
 local OriginPos2 = LocalPlayer.Character.HumanoidRootPart.CFrame
 local timepassed = 0
 task.wait()
@@ -6590,7 +6787,7 @@ end)
 
 
 
-InnocentBox:AddButton('杀死凶手',function()
+InnocentBox:AddButton('Kill Murderer',function()
 local OriginPos = LocalPlayer.Character.HumanoidRootPart.CFrame
 local timepassed = 0
 task.wait()
@@ -6632,14 +6829,14 @@ end)
 
 local ESPSettings = Tabs.Visuals:AddLeftGroupbox('ESP Settings')
 ESPSettings:AddToggle('ShowDistance',{
-Text = "显示ESP距离",
+Text = "Show ESP Distance",
 Default = false,
 Callback = function(Value)
 ESPLibrary:ShowDistance(Value)
 end
 })
 ESPSettings:AddToggle('ShowTracers',{
-Text = "显示透视射线",
+Text = "Show ESP Tracers",
 Default = false,
 Callback = function(Value)
 ESPLibrary:SetTracers(Value)
@@ -6648,7 +6845,7 @@ end
 
     ESPBox:AddToggle('PlayersESP', { Text = "Enable Players ESP", Default = false })
 ESPBox:AddToggle('DroppedGun',{
-Text = "已掉落的枪支",
+Text = "Dropped Gun",
 Default = false,
 Callback = function(Value)
 if not Value then
@@ -6664,18 +6861,18 @@ end
 })
 
 
-    local UISettingsBox = Tabs.Settings:AddLeftGroupbox('UI 设置')
-    local UtilityBox = Tabs.Settings:AddRightGroupbox('Hub 实用功能')
+    local UISettingsBox = Tabs.Settings:AddLeftGroupbox('UI Settings')
+    local UtilityBox = Tabs.Settings:AddRightGroupbox('Hub Utilities')
 
-    UISettingsBox:AddLabel("菜单绑定"):AddKeyPicker("菜单键位绑定", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
+    UISettingsBox:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
     Library.ToggleKeybind = Options.MenuKeybind
 
-    UISettingsBox:AddToggle("ShowKeybinds", { Text = "显示快捷键绑定浮层", Default = false }):OnChanged(function()
+    UISettingsBox:AddToggle("ShowKeybinds", { Text = "Show Keybinds Overlay", Default = false }):OnChanged(function()
         Library.KeybindFrame.Visible = Toggles.ShowKeybinds.Value
     end)
 
     UtilityBox:AddButton({
-        Text = "卸载 Hub",
+        Text = "Unload Hub",
         Func = function()
             game.Players.LocalPlayer:SetAttribute("mshaxLoaded", false)
             for _, con in pairs(Connections) do con:Disconnect() end
@@ -6861,7 +7058,7 @@ end
 if Toggles.DroppedGun.Value then
 local Gun = workspace:FindFirstChild("GunDrop",true)
 if Gun and not ESPLibrary:IsAlreadyESPED(Gun) then
-ESPLibrary:AddESP(Gun, "已掉落的枪支", Color3.new(1, 1, 0))
+ESPLibrary:AddESP(Gun, "Dropped Gun", Color3.new(1, 1, 0))
 end
 
 end
@@ -7100,7 +7297,7 @@ end
     SaveManager:BuildConfigSection(Tabs['Settings'])
     ThemeManager:ApplyToTab(Tabs['Settings'])
 
-    Library:Notify("Orange Hub Loaded Successfully!", 3)
+    Library:Notify("Orange Hub  Loaded Successfully!", 3)
 end
 
 if game.PlaceId == 126509999114328 then
@@ -7146,31 +7343,31 @@ end
     local Toggles = Library.Toggles
    local Characters = workspace:WaitForChild("Characters")
 local Window = Library:CreateWindow({
-        Title = 'Orange Hub 🥭',
+        Title = 'Orange Hub',
         Center = true,
         ToggleKeybind = Enum.KeyCode.RightControl,
         AutoShow = true
     })
 
     local Tabs = {
-        Main = Window:AddTab('主要'),
-        Visuals = Window:AddTab('视觉'),
-        Settings = Window:AddTab('设置'),
+        Main = Window:AddTab('Main'),
+        Visuals = Window:AddTab('Visuals'),
+        Settings = Window:AddTab('Settings'),
     } 
 
 local ESPBox = Tabs.Visuals:AddLeftGroupbox('ESP')
 
-local ESPSettings = Tabs.Visuals:AddRightGroupbox('ESP 设置')
+local ESPSettings = Tabs.Visuals:AddRightGroupbox('ESP Settings')
 
 ESPSettings:AddToggle('ShowDistance',{
-Text = "显示ESP距离",
+Text = "Show ESP Distance",
 Default = false,
 Callback = function(Value)
 ESPLibrary:ShowDistance(Value)
 end
 })
 ESPSettings:AddToggle('ShowTracers',{
-Text = "显示透视射线",
+Text = "Show ESP Tracers",
 Default = false,
 Callback = function(Value)
 ESPLibrary:SetTracers(Value)
@@ -7180,7 +7377,7 @@ end
 
 local PlayerBox = Tabs.Main:AddRightGroupbox('Player')
 PlayerBox:AddToggle('AlwaysSprinting',{
-Text = "始终保持冲刺状态",
+Text = "Always Sprinting",
 Default = false,
 Callback = function(Value)
 if not Value then
@@ -7196,7 +7393,7 @@ LocalPlayer.Character.Humanoid.WalkSpeed = 29
 end
 end))
 ESPBox:AddToggle('Monsters',{
-Text = "怪物",
+Text = "Monsters",
 Default = false,
 Callback = function(Value)
 if Value then
@@ -7218,7 +7415,7 @@ end
 end
 })
 ESPBox:AddToggle('Items',{
-Text = "道具",
+Text = "Items",
 Default = false,
 Callback = function(Value)
 if Value then
@@ -7255,7 +7452,7 @@ end))
 
 
 PlayerBox:AddToggle('Godmode',{
-Text = "无敌模式",
+Text = "Godmode",
 Default = false
 })
 table.insert(Connections,LocalPlayer.Character.Humanoid:GetPropertyChangedSignal("Health"):Connect(function()
@@ -7270,18 +7467,18 @@ end
 end))
 
 
-local UISettingsBox = Tabs.Settings:AddLeftGroupbox('UI 设置')
-    local UtilityBox = Tabs.Settings:AddRightGroupbox('Hub 实用功能')
+local UISettingsBox = Tabs.Settings:AddLeftGroupbox('UI Settings')
+    local UtilityBox = Tabs.Settings:AddRightGroupbox('Hub Utilities')
 
-    UISettingsBox:AddLabel("Menu bind"):AddKeyPicker("菜单键位绑定", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
+    UISettingsBox:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
     Library.ToggleKeybind = Options.MenuKeybind
 
-    UISettingsBox:AddToggle("ShowKeybinds", { Text = "显示快捷键绑定浮层", Default = false }):OnChanged(function()
+    UISettingsBox:AddToggle("ShowKeybinds", { Text = "Show Keybinds Overlay", Default = false }):OnChanged(function()
         Library.KeybindFrame.Visible = Toggles.ShowKeybinds.Value
     end)
 
     UtilityBox:AddButton({
-        Text = "卸载 Hub",
+        Text = "Unload Hub",
         Func = function()
             game.Players.LocalPlayer:SetAttribute("mshaxLoaded", false)
             for _, con in pairs(Connections) do con:Disconnect() end
@@ -7327,33 +7524,33 @@ local Connections = {}
 local Options = Library.Options
     local Toggles = Library.Toggles
 local Window = Library:CreateWindow({
-        Title = 'Orange Hub 🥭',
+        Title = 'Orange Hub',
         Center = true,
         ToggleKeybind = Enum.KeyCode.RightControl,
         AutoShow = true
     })
 
     local Tabs = {
-       Main = Window:AddTab('主要'),
-        Visuals = Window:AddTab('视觉'),
-        Settings = Window:AddTab('设置'),
+       Main = Window:AddTab('Main'),
+        Visuals = Window:AddTab('Visuals'),
+        Settings = Window:AddTab('Settings'),
     } 
 
 local CurrentMap
 
 local ESPBox = Tabs.Visuals:AddLeftGroupbox('ESP')
 
-local MainBox = Tabs.Main:AddLeftGroupbox('战利品')
+local MainBox = Tabs.Main:AddLeftGroupbox('Loot')
 local FireTouchCheck = false
 local HasFireTouch = false
 local con
-MainBox:AddButton('获取全部战利品',function()
+MainBox:AddButton('GetAllLoot',function()
 if firetouchinterest and not FireTouchCheck then
 local Part = Instance.new("Part",workspace)
 
 con = Part.Touched:Connect(function()
 HasFireTouch = true
-Library:Notify("执行器支持firetouchinterest功能，此特性正常运作。s",3)
+Library:Notify("Executor Supports firetouchinterest this feature works",3)
 Part:Destroy()
 con:Disconnect()
 end)
@@ -7376,7 +7573,7 @@ end
 end)
 local ESPSettings = Tabs.Visuals:AddRightGroupbox('ESP Settings')
 ESPSettings:AddToggle('ShowDistance',{
-Text = "显示ESP距离",
+Text = "Show ESP Distance",
 Default = false,
 Callback = function(Value)
 ESPLibrary:ShowDistance(Value)
@@ -7384,7 +7581,7 @@ ESPLibrary:ShowDistance(Value)
 end
 })
 ESPSettings:AddToggle('ShowDistance',{
-Text = "显示透视射线",
+Text = "Show ESP Tracers",
 Default = false,
 Callback = function(Value)
 ESPLibrary:SetTracers(Value)
@@ -7395,7 +7592,7 @@ end
 
 
 ESPBox:AddToggle('Killer',{
-Text = "杀手",
+Text = "Killer",
 Default = false,
 Callback = function(Value)
 if Value then
@@ -7421,7 +7618,7 @@ end
 end
 })
 ESPBox:AddToggle('Exits',{
-Text = "出口",
+Text = "Exits",
 Default = false,
 Callback = function(Value)
 if not Value then
@@ -7441,7 +7638,7 @@ end
 
 
 ESPBox:AddToggle('Loot',{
-Text = "战利品",
+Text = "Loot",
 Default = false,
 Callback = function(Value)
 if not Value then
@@ -7466,7 +7663,7 @@ end
 
 
 ESPBox:AddToggle('NoFog',{
-Text = "无雾",
+Text = "No Fog",
 Default = false,
 Callback = function(Value)
 if not Value then
@@ -7514,7 +7711,7 @@ local Exits = CurrentMap:FindFirstChild("Exits") and CurrentMap.Exits or Current
 
 for _, v in pairs(Exits:GetChildren()) do
 if not ESPLibrary:IsAlreadyESPED(v) then
-ESPLibrary:AddESP(v, "出口路线", Color3.new(0, 1, 0))
+ESPLibrary:AddESP(v, "Exit Way", Color3.new(0, 1, 0))
 end
 end
 end
@@ -7534,7 +7731,7 @@ if Loots then
 
 for _, v in pairs(Loots:GetChildren()) do
 if not ESPLibrary:IsAlreadyESPED(v) then
-ESPLibrary:AddESP(v, "战利品", Color3.new(0, 1, 0))
+ESPLibrary:AddESP(v, "Loot", Color3.new(0, 1, 0))
 end
 end
 end
@@ -7542,18 +7739,18 @@ end
 end
 end))
 
-local UISettingsBox = Tabs.Settings:AddLeftGroupbox('UI 设置')
-    local UtilityBox = Tabs.Settings:AddRightGroupbox('Hub 实用功能')
+local UISettingsBox = Tabs.Settings:AddLeftGroupbox('UI Settings')
+    local UtilityBox = Tabs.Settings:AddRightGroupbox('Hub Utilities')
 
-    UISettingsBox:AddLabel("Menu bind"):AddKeyPicker("菜单键位绑定", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
+    UISettingsBox:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
     Library.ToggleKeybind = Options.MenuKeybind
 
-    UISettingsBox:AddToggle("ShowKeybinds", { Text = "显示快捷键绑定浮层", Default = false }):OnChanged(function()
+    UISettingsBox:AddToggle("ShowKeybinds", { Text = "Show Keybinds Overlay", Default = false }):OnChanged(function()
         Library.KeybindFrame.Visible = Toggles.ShowKeybinds.Value
     end)
 
     UtilityBox:AddButton({
-        Text = "卸载 Hub",
+        Text = "Unload Hub",
         Func = function()
             game.Players.LocalPlayer:SetAttribute("mshaxLoaded", false)
             for _, con in pairs(Connections) do con:Disconnect() end
@@ -7604,30 +7801,30 @@ local Connections = {}
 local Options = Library.Options
     local Toggles = Library.Toggles
 local Window = Library:CreateWindow({
-        Title = 'Orange Hub 🥭',
+        Title = 'Orange Hub',
         Center = true,
         ToggleKeybind = Enum.KeyCode.RightControl,
         AutoShow = true
     })
 
     local Tabs = {
-       Main = Window:AddTab('主要'),
-        Settings = Window:AddTab('设置'),
+       Main = Window:AddTab('Main'),
+        Settings = Window:AddTab('Settings'),
     } 
 
-local RobBox = Tabs.Main:AddLeftGroupbox('刷取')
+local RobBox = Tabs.Main:AddLeftGroupbox('Farming')
 
-local RemoveBox = Tabs.Main:AddRightGroupbox('删除')
-local MainFeatures = Tabs.Main:AddRightGroupbox('主要')
+local RemoveBox = Tabs.Main:AddRightGroupbox('Remove')
+local MainFeatures = Tabs.Main:AddRightGroupbox('Main')
 
-local ObtainBox = Tabs.Main:AddRightGroupbox('获取')
+local ObtainBox = Tabs.Main:AddRightGroupbox('Obtain')
 
-ObtainBox:AddButton('获取喷气背包钥匙',function()
+ObtainBox:AddButton('Obtain Jetpack Key',function()
 workspace.ObjectSelection.BossKey.Nope.BossKey.Event:FireServer()
 
 end)
 MainFeatures:AddToggle('WalkOnWater',{
-Text = "轻功水上漂",
+Text = "Walk on Water",
 Default = false,
 Callback = function(Value)
 if not  Value then
@@ -7698,8 +7895,8 @@ end
 local tween = nil
 task.wait()
 RobBox:AddToggle('FarmMoney',{
-Text = "刷取现金",
-Tooltip = "自动获取金钱",
+Text = "Farm Cash",
+Tooltip = "Get Money Automatically",
 Default = false,
 Callback = function(Value)
 if not Value  then
@@ -7717,12 +7914,12 @@ end
 end
 })
 RobBox:AddToggle('AutoArrest',{
-Text = "自动逮捕罪犯",
+Text = "Auto Arrest Criminals",
 Default = false,
 Visible = false
 })
 
-RobBox:AddButton('抢劫银行',function()
+RobBox:AddButton('Rob Bank',function()
 if tween3 then
 tween3:Cancel()
 tween3 = nil
@@ -7748,7 +7945,7 @@ task.wait(0.5)
 Library:Notify("Robbed Bank successfully",3)
 end)
 
-RobBox:AddButton('抢劫珠宝店',function()
+RobBox:AddButton('Rob Jewelry Store',function()
 if tween3 then
 tween3:Cancel()
 tween3 = nil
@@ -7772,12 +7969,12 @@ tween3 = TweenService:Create(LocalPlayer.Character.HumanoidRootPart,TweenInfo.ne
 tween3:Play()
 tween3.Completed:Wait()
 
-Library:Notify("抢劫珠宝店成功",3)
+Library:Notify("Robbed Jewelry Store successfully",3)
 end)
 
 
 RemoveBox:AddToggle('RemoveLasers',{
-Text = "移除激光",
+Text = "Remove Lasers",
 Default = false,
 Callback = function(Value)
 if Value then
@@ -7903,18 +8100,18 @@ end
 
 end))
 
-local UISettingsBox = Tabs.Settings:AddLeftGroupbox('UI 设置')
-    local UtilityBox = Tabs.Settings:AddRightGroupbox('Hub 实用功能')
+local UISettingsBox = Tabs.Settings:AddLeftGroupbox('UI Settings')
+    local UtilityBox = Tabs.Settings:AddRightGroupbox('Hub Utilities')
 
-    UISettingsBox:AddLabel("Menu bind"):AddKeyPicker("菜单键位绑定", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
+    UISettingsBox:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
     Library.ToggleKeybind = Options.MenuKeybind
 
-    UISettingsBox:AddToggle("ShowKeybinds", { Text = "显示快捷键绑定浮层", Default = false }):OnChanged(function()
+    UISettingsBox:AddToggle("ShowKeybinds", { Text = "Show Keybinds Overlay", Default = false }):OnChanged(function()
         Library.KeybindFrame.Visible = Toggles.ShowKeybinds.Value
     end)
 
     UtilityBox:AddButton({
-        Text = "卸载 Hub",
+        Text = "Unload Hub",
         Func = function()
             game.Players.LocalPlayer:SetAttribute("mshaxLoaded", false)
             for _, con in pairs(Connections) do con:Disconnect() end
@@ -8017,7 +8214,7 @@ end
 local Connections = {}
 
 local Window = Library:CreateWindow({
-	Title = " Orange Hub 🥭­",
+	Title = " Orange Hub ðŸ¥­",
 	Footer = "version: 1",
 	NotifySide = "Right",
 	ShowCustomCursor = true,
@@ -8026,21 +8223,21 @@ local Window = Library:CreateWindow({
 
 local Tabs = {
 
-	Main = Window:AddTab("主要", "user"),
-	["UI Settings"] = Window:AddTab("UI 设置", "settings"),
+	Main = Window:AddTab("Main", "user"),
+	["UI Settings"] = Window:AddTab("UI Settings", "settings"),
 }
-local Auto = Tabs.Main:AddRightGroupbox('自动化')
+local Auto = Tabs.Main:AddRightGroupbox('Automation')
 
 Auto:AddToggle('AutoGrab',{
-Text = "自动抓取",
+Text = "Automation Grab",
 Default = false
 })
 Auto:AddToggle('AutoEat',{
-Text = "自动吃",
+Text = "Automation Eat",
 Default = false
 })
 Auto:AddToggle('AutoSell',{
-Text = "自动出售（当物品满时）",
+Text = "Automation Sell (When Full)",
 Default = false
 })
 table.insert(Connections,shared.RunService.Heartbeat:Connect(function()
@@ -8078,27 +8275,27 @@ end))
 
 
 -- UI Settings
-local MenuGroup = Tabs["UI 设置"]:AddLeftGroupbox("菜单", "wrench")
+local MenuGroup = Tabs["UI Settings"]:AddLeftGroupbox("Menu", "wrench")
 
 MenuGroup:AddToggle("KeybindMenuOpen", {
 	Default = Library.KeybindFrame.Visible,
-	Text = "打开菜单键位绑定",
+	Text = "Open Keybind Menu",
 	Callback = function(value)
 		Library.KeybindFrame.Visible = value
 	end,
 })
 MenuGroup:AddToggle("ShowCustomCursor", {
-	Text = "自定义光标",
+	Text = "Custom Cursor",
 	Default = true,
 	Callback = function(Value)
 		Library.ShowCustomCursor = Value
 	end,
 })
 MenuGroup:AddDropdown("NotificationSide", {
-	Values = { "左", "右" },
-	Default = "右",
+	Values = { "Left", "Right" },
+	Default = "Right",
 
-	Text = "通知侧",
+	Text = "Notification Side",
 
 	Callback = function(Value)
 		Library:SetNotifySide(Value)
@@ -8108,7 +8305,7 @@ MenuGroup:AddDropdown("DPIDropdown", {
 	Values = { "50%", "75%", "100%", "125%", "150%", "175%", "200%" },
 	Default = "100%",
 
-	Text = "DPI 缩放",
+	Text = "DPI Scale",
 
 	Callback = function(Value)
 		Value = Value:gsub("%%", "")
@@ -8118,10 +8315,10 @@ MenuGroup:AddDropdown("DPIDropdown", {
 	end,
 })
 MenuGroup:AddDivider()
-MenuGroup:AddLabel("菜单绑定键位")
-	:AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "菜单键位绑定" })
+MenuGroup:AddLabel("Menu bind")
+	:AddKeyPicker("MenuKeybind", { Default = "RightShift", NoUI = true, Text = "Menu keybind" })
 
-MenuGroup:AddButton("卸载", function()
+MenuGroup:AddButton("Unload", function()
 
 	Library:Unload()
 ESPLibrary:Unload()
@@ -8134,7 +8331,7 @@ end
 
 end)
 
-MenuGroup:AddButton("加入 Discord", function()
+MenuGroup:AddButton("JoinDiscord", function()
 
 toclipboard("https://discord.gg/CBDfkeXsZs")
 	
@@ -8166,11 +8363,11 @@ SaveManager:SetIgnoreIndexes({ "MenuKeybind" })
 -- and game configs in a separate folder per game
 ThemeManager:SetFolder("LifeHub")
 SaveManager:SetFolder("LifeHub/EatWorld")
-SaveManager:BuildConfigSection(Tabs["UI 设置"])
+SaveManager:BuildConfigSection(Tabs["UI Settings"])
 
 -- Builds our theme menu (with plenty of built in themes) on the left side
 -- NOTE: you can also call ThemeManager:ApplyToGroupbox to add it to a specific groupbox
-ThemeManager:ApplyToTab(Tabs["UI 设置"])
+ThemeManager:ApplyToTab(Tabs["UI Settings"])
 
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
@@ -8198,7 +8395,7 @@ end
 local Connections = {}
 
 local Window = Library:CreateWindow({
-	Title = " Orange Hub 🥭­",
+	Title = " Orange Hub ðŸ¥­",
 	Footer = "version: 1",
 	NotifySide = "Right",
 	ShowCustomCursor = true,
@@ -8207,14 +8404,14 @@ local Window = Library:CreateWindow({
 
 local Tabs = {
 
-	Main = Window:AddTab("主要", "user"),
-	["UI Settings"] = Window:AddTab("UI 设置", "settings"),
+	Main = Window:AddTab("Main", "user"),
+	["UI Settings"] = Window:AddTab("UI Settings", "settings"),
 }
 
-local Bypass = Tabs.Main:AddRightGroupbox('绕过')
+local Bypass = Tabs.Main:AddRightGroupbox('Bypass')
 
-local Self  = Tabs.Main:AddLeftGroupbox('自己')
-Self:AddButton("获取所有道具",function()
+local Self  = Tabs.Main:AddLeftGroupbox('Self')
+Self:AddButton("Get All Tools",function()
 for _, v in pairs(game:GetService("ReplicatedStorage").Assets.Gear:GetChildren()) do
 if v:IsA("Tool") then
 
@@ -8252,15 +8449,15 @@ end))
 end)
 
 Self:AddToggle('Godmode',{
-Text = "上帝模式",
+Text = "God Mode",
 Default = false
 })
 
 Bypass:AddToggle('AnticheatBypass',{
-Text = "反作弊绕过",
+Text = "Anticheat Bypass",
 Default = false,
 Disabled = not hookfunction,
-DisabledTooltip = "此功能不受执行器支持。"
+DisabledTooltip = "This Feature is not supported by the Executor"
 })
 for _, func in getgc(true) do
 
@@ -8282,23 +8479,23 @@ end
 
 
 -- UI Settings
-local MenuGroup = Tabs["UI 设置"]:AddLeftGroupbox("菜单", "wrench")
+local MenuGroup = Tabs["UI Settings"]:AddLeftGroupbox("Menu", "wrench")
 
 MenuGroup:AddToggle("KeybindMenuOpen", {
 	Default = Library.KeybindFrame.Visible,
-	Text = "打开菜单绑定键位",
+	Text = "Open Keybind Menu",
 	Callback = function(value)
 		Library.KeybindFrame.Visible = value
 	end,
 })
 MenuGroup:AddToggle("ShowCustomCursor", {
-	Text = "自定义光标",
+	Text = "Custom Cursor",
 	Default = true,
 	Callback = function(Value)
 		Library.ShowCustomCursor = Value
 	end,
 })
-MenuGroup:AddDropdown("通知侧", {
+MenuGroup:AddDropdown("NotificationSide", {
 	Values = { "Left", "Right" },
 	Default = "Right",
 
