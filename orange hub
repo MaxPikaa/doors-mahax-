@@ -2793,7 +2793,7 @@ end)
 
 if ReplicatedStorage:FindFirstChild("RemotesFolder") then
 Bypass:AddDropdown("SpeedBypassMethod", {
-        Values = {"模式 1","模式 2"},
+        Values = {"","Method 2"},
         Default = 1, -- number index of the value / string
         Multi = false, -- true / false, allows multiple choices to be selected
 
@@ -2819,9 +2819,9 @@ Library:Notify("速度绕过方法2无法工作，因为您的执注入器不支
 
 end
 
-if Options.SpeedBypassMethod.Value == "模式 1" then
+if Options.SpeedBypassMethod.Value == "Method 1" then
 Options.SpeedBoostSlider:SetMax(Value and 100 or 21)
-elseif Options.SpeedBypassMethod.Value == "模式 2" then
+elseif Options.SpeedBypassMethod.Value == "Method 2" then
 Options.SpeedBoostSlider:SetMax(Value and 150 or 21)
 end
 
@@ -5905,7 +5905,7 @@ end
 local Screech = Modules:FindFirstChild("Screech") or Modules:FindFirstChild("_Screech")
 
 Screech.Name =    "Screech"
-Library:Notify("关闭中请等待",0.8)
+Library:Notify("Unloading Wait",0.8)
 task.wait(1.5)
 Library:Unload()
 ESPLibrary:Unload() -- Nice
@@ -6212,7 +6212,7 @@ end)
 
 
 MenuGroup:AddButton({
-     Text = "关闭整个GUI及功能",
+     Text = "卸载GUI及功能",
      Func = function()
 Unload()
 end
