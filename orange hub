@@ -1949,7 +1949,7 @@ end
 	})
 
 Automation:AddDropdown("IgnoreList", {
-        Values = {"杰夫商店的物品","金币","丢弃物","错误方块","死亡糖果"},
+        Values = {"杰夫商店的物品","金币","掉落物","错误方块","死亡糖果"},
         Default = 1, -- number index of the value / string
         Multi = true, -- true / false, allows multiple choices to be selected
 
@@ -3727,8 +3727,8 @@ local Door = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.V
 local Door2 = workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value + 1].Door.Door
 if not Door:GetAttribute("Used") then
 
-AddESP(Door, (Door.Parent.Parent:GetAttribute("RequiresKey") and "Locked  " or "") .. "门 " .. Door.Parent:GetAttribute("RoomID"), DoorColor)
-AddESP(Door2, (Door2.Parent.Parent:GetAttribute("RequiresKey") and "Locked  " or "") .. "门 " .. Door2.Parent:GetAttribute("RoomID"), DoorColor)
+AddESP(Door, (Door.Parent.Parent:GetAttribute("RequiresKey") and "[上锁的]  " or "") .. "门 " .. Door.Parent:GetAttribute("RoomID"), DoorColor)
+AddESP(Door2, (Door2.Parent.Parent:GetAttribute("RequiresKey") and "[上锁的]  " or "") .. "门 " .. Door2.Parent:GetAttribute("RoomID"), DoorColor)
 
 end
 else
@@ -4044,14 +4044,14 @@ local HidingSpots = {
 Wardrobe = "柜子",
 Rooms_Locker = "柜子",
 Backdoor_Wardrobe = "柜子",
-Toolshed = "工具间",
+Toolshed = "柜子",
 Locker_Large = "柜子",
-Bed = "单人床",
-CircularVent = "通风管",
+Bed = "床",
+CircularVent = "通风管道",
 Rooms_Locker_Fridge = "柜子",
 RetroWardrobe = "柜子",
 Dumpster = "垃圾桶",
-Double_Bed = "双人床"
+Double_Bed = "床"
 }
 
 ESP:AddToggle('HidingSpot',{
@@ -4093,13 +4093,13 @@ end
 })
 
 ESP:AddToggle('GateLever',{
-     Text = "门把手",
+     Text = "门闸",
      Default = false,
 Callback = function(Value)
 if Value then
 for _, v in ipairs(workspace.CurrentRooms[LocalPlayer:GetAttribute("CurrentRoom")]:GetDescendants()) do
 if v.Name == "LeverForGate" then
-AddESP(v,"门把手",GateLeverColor)
+AddESP(v,"门闸",GateLeverColor)
 
 end
 end
@@ -4112,7 +4112,7 @@ end
 end
 }):AddColorPicker('GateLeverColo', {
 	Default = GateLeverColor, -- Bright green
-	Title = '门把手', -- Optional. Allows you to have a custom color picker title (when you open it)
+	Title = '门闸', -- Optional. Allows you to have a custom color picker title (when you open it)
 	Transparency = 0, -- Optional. Enables transparency changing for this color picker (leave as nil to disable)
 
 	Callback = function(Value)
@@ -4302,12 +4302,12 @@ TipJar = "杰夫罐子",
 LotusPetalPickup = "莲花花瓣",
 KeyIron = "铁钥匙",
 Donut = "甜甜圈",
-Toolshed_Small = "工具间小剪刀",
+Toolshed_Small = "工具间剪刀",
 Chest_Vine = "[缠藤蔓] 宝箱",
 ChestBoxLocked = "[上锁的] 宝箱",
 ChestBox = "宝箱",
 StardustPickup = "星尘",
-GlitchCube = "错误碎片",
+GlitchCube = "错误方块",
 CandyBag = "糖果袋"
 }
 ESP:AddToggle('Items',{
@@ -4928,7 +4928,7 @@ Lighting.Ambient = Color3.fromRGB(255, 255, 255)
 end
 
 
-if Options.GMDropdown and Options.GMDropdown.Value == "Automation" then
+if Options.GMDropdown and Options.GMDropdown.Value == "全自动" then
 
 local Entitys = workspace:FindFirstChild("RushMoving") or workspace:FindFirstChild("AmbushMoving") or workspace:FindFirstChild("GlitchRush") or workspace:FindFirstChild("GlitchAmbush") or workspace:FindFirstChild("BackdoorRush")
 
@@ -5285,14 +5285,14 @@ end
 end
 if Base and (LocalPlayer.Character.HumanoidRootPart.Position - Base.Position).Magnitude < prompt.MaxActivationDistance then
 
-if prompt.Parent and prompt.Parent.Name == "GoldPile" and Options.IgnoreList.Value["Gold"] then continue end
-if prompt.Parent:GetAttribute("JeffShop")  and Options.IgnoreList.Value["Jeff Items"] then continue end
-if prompt.Parent.Parent and prompt.Parent.Parent.Name == "Drops" and Options.IgnoreList.Value["Drops"] then continue end
+if prompt.Parent and prompt.Parent.Name == "GoldPile" and Options.IgnoreList.Value["金币"] then continue end
+if prompt.Parent:GetAttribute("JeffShop")  and Options.IgnoreList.Value["杰夫商店的物品"] then continue end
+if prompt.Parent.Parent and prompt.Parent.Parent.Name == "Drops" and Options.IgnoreList.Value["掉落物"] then continue end
 if prompt.Name == "ModulePrompt" and prompt.Parent and prompt.Parent.Name == "Hole" then continue end
 if prompt.Name == "ModulePrompt" and prompt.Parent and prompt.Parent.Name == "Mandrake" then continue end
+if prompt.Parent and prompt.Parent.Name == "GlitchCube" and Options.IgnoreList.Value["错误方块"] then continue end
 if prompt.Parent and prompt.Parent.Name == "GlitchCube" and Options.IgnoreList.Value["Glitch Fragment"] then continue end
-if prompt.Parent and prompt.Parent.Name == "GlitchCube" and Options.IgnoreList.Value["Glitch Fragment"] then continue end
-if prompt.Parent and prompt.Parent:GetAttribute("Tool_CandyID") == "CandyRed" and Options.IgnoreList.Value["Can-Die-Candy"] then
+if prompt.Parent and prompt.Parent:GetAttribute("Tool_CandyID") == "CandyRed" and Options.IgnoreList.Value["死亡糖果"] then
  continue end
 
 
@@ -5445,7 +5445,7 @@ if Toggles.Generator and Toggles.Generator.Value then
 local v = workspace.CurrentRooms[LocalPlayer:GetAttribute("CurrentRoom")]:FindFirstChild("GeneratorMain",true)
 if v then 
 repeat task.wait(0.05) until v.Parent ~= nil
-AddESP(v,"Generator",GeneratorColor)
+AddESP(v,"发电机",GeneratorColor)
 
 end
 end
@@ -5790,7 +5790,7 @@ if Toggles.Fuse and Toggles.Fuse.Value then
 if v.Name == "FuseObtain" then
 
 
-AddESP(v,"Fuse",FuseColor)
+AddESP(v,"保险丝",FuseColor)
 end
 end
 
